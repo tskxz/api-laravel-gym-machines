@@ -19,6 +19,11 @@ class MusculoController extends Controller
         return MusculoResource::collection($musculos);
     }
 
+    public function show($id){
+        $musculo = Musculo::findOrFail($id);
+        return new MusculoResource($musculo);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
