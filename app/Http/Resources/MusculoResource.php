@@ -17,7 +17,6 @@ class MusculoResource extends JsonResource
         return [
             'id'=>$this->id,
             'nome'=>$this->nome,
-            'created_at'=>$this->created_at,
         ];
     }
 }
