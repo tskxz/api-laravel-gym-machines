@@ -13,4 +13,14 @@ class Maquina extends Model
         'descricao',
         'estado'
     ];
+
+    /**
+     * Get the musculo that owns the Maquina
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function musculo(): BelongsTo
+    {
+        return $this->belongsTo(Musculo::class);
+    }
 }

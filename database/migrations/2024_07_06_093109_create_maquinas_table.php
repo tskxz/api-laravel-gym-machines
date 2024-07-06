@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nome');
             $table->text('descricao');
             $table->boolean('estado')->default(1); // 0 danificado, 1 funcional
+            $table->foreignId('musculo_id')->constrained();
             $table->timestamps();
         });
     }
