@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Maquina;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreMaquinaRequest;
+use App\Http\Resources\MaquinaResource;
 
 class MaquinaController extends Controller
 {
@@ -13,47 +15,37 @@ class MaquinaController extends Controller
      */
     public function index()
     {
-        //
+        $maquinas = Maquina::all();
+        return MaquinaResource::collection($maquinas);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMaquinaRequest $request)
     {
-        //
+        $maquina = Maquina::create($request->validated());
+        return new MaquinaResource($maquina);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Maquina $maquina)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Maquina $maquina)
-    {
-        //
+        $maquina = Maquina::findOrFail($id);
+        return new MaquinaResource($maquina);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Maquina $maquina)
+    public function update(StoreMaquinaRequest $request, Maquina $maquina)
     {
-        //
+        $maquina->update($request->validated());
+        return new MaquinaResource($maquina);
     }
 
     /**
@@ -61,6 +53,7 @@ class MaquinaController extends Controller
      */
     public function destroy(Maquina $maquina)
     {
-        //
+        $maquina->delete();
+        return response(null, 204);
     }
 }
