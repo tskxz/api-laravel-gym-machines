@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Musculo;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreMusculoRequest;
+use App\Http\Resources\MusculoResource;
 
 class MusculoController extends Controller
 {
@@ -13,47 +15,26 @@ class MusculoController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $musculos = Musculo::all();
+        return MusculoResource::collection($musculos);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMusculoRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Musculo $musculo)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Musculo $musculo)
-    {
-        //
+        $musculo = Musculo::create($request->validated());
+        return new MusculoResource($musculo);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Musculo $musculo)
+    public function update(StoreMusculoRequest $request, Musculo $musculo)
     {
-        //
+        $musculo->update($request->validated());
+        return new MusculoResource($musculo);
     }
 
     /**
@@ -61,6 +42,7 @@ class MusculoController extends Controller
      */
     public function destroy(Musculo $musculo)
     {
-        //
+        $musculo->delete();
+        return response(null, 204);
     }
 }
