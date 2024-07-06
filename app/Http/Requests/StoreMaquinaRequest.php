@@ -22,7 +22,9 @@ class StoreMaquinaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nome' => ['required'],
+            'descricao' => ['required'],
+            'musculo_id' => ['required']
         ];
     }
 }
