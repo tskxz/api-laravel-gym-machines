@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\MusculoResource;
 
 class MaquinaResource extends JsonResource
 {
@@ -19,6 +20,7 @@ class MaquinaResource extends JsonResource
             'nome'=>$this->nome,
             'descricao'=>$this->descricao,
             'musculo_id'=>$this->musculo_id,
+            'musculo' => new MusculoResource($this->whenLoaded('musculo')),
         ];
     }
 }

@@ -22,9 +22,10 @@ class StoreMaquinaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => ['required'],
-            'descricao' => ['required'],
-            'musculo_id' => ['required']
+            'nome' => 'sometimes|string|max:255',
+            'descricao' => 'sometimes|string|max:255',
+            'estado'=> 'sometimes|string|max:255',
+            'musculo_id' => 'sometimes|string|max:255'
         ];
     }
 }
