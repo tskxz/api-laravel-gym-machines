@@ -23,7 +23,7 @@ class StoreMaquinaRequest extends FormRequest
     {
         return [
             'nome' => 'sometimes|string|max:255',
-            'descricao' => 'sometimes|string|max:255',
+            'descricao' => 'sometimes|string|max:500',
             'estado'=> 'sometimes|string|max:255',
             'musculo_id' => 'sometimes|string|max:255'
         ];
