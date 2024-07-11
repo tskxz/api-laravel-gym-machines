@@ -13,7 +13,8 @@ class Maquina extends Model
         'nome',
         'descricao',
         'estado',
-        'musculo_id'
+        'musculo_id',
+        'marca_id',
     ];
 
     /**
