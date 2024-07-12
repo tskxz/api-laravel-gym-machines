@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMaquinaRequest extends FormRequest
+class StoreMarcaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,7 @@ class StoreMaquinaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'sometimes|string|max:255',
-            'descricao' => 'sometimes|string|max:500',
-            'estado'=> 'sometimes|string|max:255',
-            'musculo_id' => 'sometimes|string|max:255',
-            'marca_id'=> 'sometimes|string|max:255',
+            'nome' => ['required']
         ];
     }
 }

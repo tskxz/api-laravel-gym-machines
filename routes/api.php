@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\MusculoController;
 use App\Http\Controllers\Api\MaquinaController;
+use App\Http\Controllers\Api\MarcaController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -14,3 +15,5 @@ Route::apiResource('musculo', MusculoController::class)->except([
 ]);
 
 Route::apiResource('maquina', MaquinaController::class)->except(['create', 'edit']);
+
+Route::apiResource('marca', MarcaController::class)->except(['create', 'edit']);

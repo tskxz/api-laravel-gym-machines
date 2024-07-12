@@ -13,7 +13,8 @@ class Maquina extends Model
         'nome',
         'descricao',
         'estado',
-        'musculo_id'
+        'musculo_id',
+        'marca_id',
     ];
 
     /**
@@ -24,5 +25,10 @@ class Maquina extends Model
     public function musculo(): BelongsTo
     {
         return $this->belongsTo(Musculo::class);
+    }
+
+    public function marca(): BelongsTo
+    {
+        return $this->belongsTo(Marca::class);
     }
 }

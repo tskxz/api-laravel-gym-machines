@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('maquinas', function (Blueprint $table) {
+        Schema::create('marcas', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->text('descricao');
-            $table->boolean('estado')->default(1); // 0 danificado, 1 funcional
-            $table->foreignId('musculo_id')->constrained();
-            $table->foreignId('marca_id')->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('maquinas');
+        Schema::dropIfExists('marcas');
     }
 };
