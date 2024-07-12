@@ -15,7 +15,7 @@ class MaquinaController extends Controller
      */
     public function index()
     {
-        $maquinas = Maquina::with('musculo')->get();
+        $maquinas = Maquina::with(['musculo', 'marca'])->get();
         return MaquinaResource::collection($maquinas);
     }
 
@@ -27,7 +27,7 @@ class MaquinaController extends Controller
     public function store(StoreMaquinaRequest $request)
     {
         $maquina = Maquina::create($request->validated());
-        $maquina->load('musculo');
+        $maquina->load(['musculo', 'marca']);
         return new MaquinaResource($maquina);
     }
 
@@ -36,7 +36,7 @@ class MaquinaController extends Controller
      */
     public function show($id)
     {
-        $maquina = Maquina::with('musculo')->findOrFail($id);
+        $maquina = Maquina::with('musculo', 'marca')->findOrFail($id);
         return new MaquinaResource($maquina);
     }
 
@@ -46,7 +46,7 @@ class MaquinaController extends Controller
     public function update(StoreMaquinaRequest $request, Maquina $maquina)
     {
         $maquina->update($request->validated());
-        $maquina->load('musculo');
+        $maquina->load(['musculo', 'maquina']);
         return new MaquinaResource($maquina);
     }
 
