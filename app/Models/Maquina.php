@@ -26,4 +26,9 @@ class Maquina extends Model
     {
         return $this->belongsTo(Musculo::class);
     }
+
+    public function marca(): BelongsTo
+    {
+        return $this->belongsTo(Marca::class);
+    }
 }
