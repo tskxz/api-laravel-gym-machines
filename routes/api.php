@@ -10,9 +10,13 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('musculo', MusculoController::class)->except([
-    'create', 'edit'
-]);
+Route::middleware(['auth'])->group(function () {
+    Route::apiResource('musculo', MusculoController::class)->except([
+        'create', 'edit'
+    ]);
+});
+
+
 
 Route::apiResource('maquina', MaquinaController::class)->except(['create', 'edit']);
 
