@@ -14,6 +14,11 @@ Route::apiResource('musculo', MusculoController::class)->except([
     'create', 'edit'
 ]);
 
-Route::apiResource('maquina', MaquinaController::class)->except(['create', 'edit']);
+Route::apiResource('maquina', MaquinaController::class)->except(['create', 'edit'])->middleware('auth:sanctum');
 
 Route::apiResource('marca', MarcaController::class)->except(['create', 'edit']);
+
+Route::post('/tokens/create', function(Request $request){
+    $token = $request->user()->createToken($request->token_name);
+    return ['token' => $token->plainTextToken];
+});
