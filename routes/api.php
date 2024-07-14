@@ -18,7 +18,7 @@ Route::apiResource('maquina', MaquinaController::class)->except(['create', 'edit
 
 Route::apiResource('marca', MarcaController::class)->except(['create', 'edit']);
 
-Route::post('/tokens/create', function(Request $request){
+Route::get('/tokens/create', function (Request $request) {
     $token = $request->user()->createToken($request->token_name);
     return ['token' => $token->plainTextToken];
 });
