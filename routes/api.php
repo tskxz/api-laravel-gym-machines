@@ -13,15 +13,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    Route::apiResource('musculo', MusculoController::class)->except([
+        'create', 'edit'
+    ]);
+    
+    Route::apiResource('maquina', MaquinaController::class)->except(['create', 'edit']);
+    
+    Route::apiResource('marca', MarcaController::class)->except(['create', 'edit']);
 });
 
-Route::apiResource('musculo', MusculoController::class)->except([
-    'create', 'edit'
-]);
 
-Route::apiResource('maquina', MaquinaController::class)->except(['create', 'edit']);
-
-Route::apiResource('marca', MarcaController::class)->except(['create', 'edit']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);    
